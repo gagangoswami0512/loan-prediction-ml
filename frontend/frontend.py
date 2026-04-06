@@ -6,12 +6,10 @@ import requests
 # -----------------------------------
 st.set_page_config(
     page_title="Loan Prediction System",
-    page_icon="💰",
     layout="wide"
 )
 
-st.title("💰 Loan Prediction System")
-st.markdown("### Smart Loan Approval Predictor")
+st.title("!!Loan Prediction System!!")
 
 st.divider()
 
@@ -21,7 +19,7 @@ st.divider()
 col1, col2 = st.columns(2)
 
 with col1:
-    st.subheader("👤 Applicant Information")
+    st.subheader("Applicant Information")
 
     Gender = st.selectbox("Gender", ["Male", "Female"])
     Married = st.selectbox("Married", ["Yes", "No"])
@@ -30,7 +28,7 @@ with col1:
     Self_Employed = st.selectbox("Self Employed", ["Yes", "No"])
 
 with col2:
-    st.subheader("💵 Financial Details")
+    st.subheader("Financial Details")
 
     ApplicantIncome = st.number_input("Applicant Income", min_value=0)
     CoapplicantIncome = st.number_input("Coapplicant Income", min_value=0)
@@ -39,7 +37,7 @@ with col2:
     Credit_History = st.selectbox("Credit History", [1, 0])
 
 Property_Area = st.selectbox(
-    "🏠 Property Area",
+    "Property Area",
     ["Rural", "Semiurban", "Urban"]
 )
 
@@ -62,7 +60,7 @@ dependents_map = {"0": 0, "1": 1, "2": 2, "3+": 4}
 center_col = st.columns([1, 2, 1])[1]
 
 with center_col:
-    if st.button("🔮 Predict Loan Status", use_container_width=True):
+    if st.button("Predict Loan Status", use_container_width=True):
 
         data = {
             "Gender": gender_map[Gender],
@@ -80,7 +78,7 @@ with center_col:
 
         try:
             response = requests.post(
-                "http://127.0.0.1:8000/predict",
+                "http://backend:8000/predict",
                 json=data
             )
 
@@ -89,10 +87,10 @@ with center_col:
             st.divider()
 
             if result["prediction"] == 1:
-                st.success("✅ Loan Approved")
+                st.success("!!Loan Approved!!")
                 st.balloons()
             else:
-                st.error("❌ Loan Rejected")
+                st.error("//Loan Rejected\\")
 
         except:
-            st.error("⚠ Backend not running. Start FastAPI first.")
+            st.error("Backend not running. Start FastAPI first.")

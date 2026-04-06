@@ -1,0 +1,17 @@
+FROM python:3.10-slim
+
+WORKDIR /app
+
+# copy requirements
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+# copy backend code
+COPY backend /app/backend
+
+# move inside backend
+WORKDIR /app/backend
+
+# run FastAPI
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]

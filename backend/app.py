@@ -5,7 +5,7 @@ import numpy as np
 app = FastAPI()
 
 # Load trained model
-model = joblib.load("backend/loan_model.pkl")
+model = joblib.load("loan_model.pkl")
 
 
 @app.get("/")
